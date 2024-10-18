@@ -7,12 +7,12 @@
 
 import Foundation
 
-final class HomeViewModel{
+final class HomeViewModel: BaseViewModel{
     
     private let productService = ProductService()
     private(set) var products: [Product] = []
-    var didUpdateProducts: (() -> Void)?
-    var didFailWithError: ((String) -> Void)?
+    var didUpdateProducts: VoidClosure?
+    var didFailWithError: StringClosure?
     
     func fetchProducts() {
         productService.fetchProducts { [weak self] result in
@@ -25,5 +25,4 @@ final class HomeViewModel{
             }
         }
     }
-    
 }

@@ -5,6 +5,7 @@
 //  Created by Şehriban Yıldırım on 9.10.2024.
 //
 
+import Foundation
 
 //MARK: -RequestProtocol
 protocol RequestProtocol{
