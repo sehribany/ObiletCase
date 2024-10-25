@@ -10,18 +10,18 @@ import Alamofire
 // MARK: - APIRequest
 enum APIRequest: RequestProtocol {
     case getProduct
-    case getCategory
+    case getProductsByCategory(Category)
     
     var path: String {
         switch self {
         case .getProduct: return APIEndpoint.products.rawValue
-        case .getCategory: return APIEndpoint.categories.rawValue
+        case .getProductsByCategory(let category) : return APIEndpoint.category(category).rawValue
         }
     }
     
     var method: RequestMethod {
         switch self {
-        case .getProduct, .getCategory: return .get
+        case .getProduct, .getProductsByCategory: return .get 
         }
     }
     

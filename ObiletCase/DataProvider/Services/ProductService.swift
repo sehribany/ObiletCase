@@ -16,8 +16,8 @@ class ProductService{
         }
     }
     
-    func fetchCategories(completion: @escaping (Result<[String], Error>) -> Void) {
-        RequestManager.shared.performRequest(request: APIRequest.getCategory) { (result: Result<[String], Error>) in
+    func fetchProductsByCategory(_ category: Category, completion: @escaping (Result<[Product], Error>) -> Void) {
+        RequestManager.shared.performRequest(request: APIRequest.getProductsByCategory(category)) { (result: Result<[Product], Error>) in
             completion(result)
         }
     }
