@@ -8,6 +8,7 @@
 import UIKit
 
 class HeaderView: UICollectionReusableView {
+    
     static var identifier: String = "HeaderView"
     
     lazy var nestedCollectionView: UICollectionView = {
@@ -53,8 +54,7 @@ extension HeaderView{
         addSubview(nestedCollectionView)
         nestedCollectionView.dataSource = self
         nestedCollectionView.delegate   = self
-        let inset: CGFloat              = 9.0
-        nestedCollectionView.frame      = CGRect(x: inset, y: bounds.origin.y, width: bounds.width - inset, height: bounds.height)
+        nestedCollectionView.frame      = CGRect(x: 9.0, y: bounds.origin.y, width: bounds.width - 9.0, height: bounds.height)
     }
 }
 
