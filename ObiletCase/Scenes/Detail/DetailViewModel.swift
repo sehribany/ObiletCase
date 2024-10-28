@@ -2,11 +2,21 @@
 //  DetailViewModel.swift
 //  ObiletCase
 //
-//  Created by Şehriban Yıldırım on 9.10.2024.
+//  Created by Şehriban Yıldırım on 28.10.2024.
 //
 
-import Foundation
+protocol DetailViewDataSource{
+    var productDetail: Product {get}
+}
 
-final class DetailViewModel{
+protocol DetailViewEventSource{}
+
+protocol DetailViewProtocol: DetailViewDataSource, DetailViewEventSource{}
+
+final class DetailViewModel: BaseViewModel, DetailViewProtocol{
+    var productDetail: Product
     
+    init(productDetail: Product){
+        self.productDetail = productDetail
+    }
 }
