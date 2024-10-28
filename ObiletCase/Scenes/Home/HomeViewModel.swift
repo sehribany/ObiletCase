@@ -15,6 +15,7 @@ protocol HomeViewDataSource {
 protocol HomeViewEventSource {
     var didSuccessFetchProduct: VoidClosure? { get set }
     var didFailWithError: StringClosure?     { get set }
+    var didSelectProduct: ((Product) -> Void)? { get set }
 }
 
 protocol HomeViewProtocol: HomeViewDataSource, HomeViewEventSource {
@@ -24,12 +25,15 @@ protocol HomeViewProtocol: HomeViewDataSource, HomeViewEventSource {
 final class HomeViewModel: BaseViewModel, HomeViewProtocol{
     var didSuccessFetchProduct: VoidClosure?
     var didFailWithError      : StringClosure?
+    var didSelectProduct      : ((Product) -> Void)?
     var cellItems             : [ProductCellViewModel] = []
     var title                 : String?
     private let productService = ProductService()
     
     func showProductDetailScreen(at indexPath: IndexPath) {
-        let product = cellItems[indexPath.row]
+        let product = cellItems[indexPath.row].product
+        didSelectProduct?(product)
+        print(product.title)
     }
     
     func numberOfItemsAt(section: Int) -> Int {

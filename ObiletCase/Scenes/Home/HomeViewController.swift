@@ -55,6 +55,12 @@ class HomeViewController: BaseViewController<HomeViewModel>{
         viewModel.didFailWithError = { error in
             print("Veri çekme hatası: \(error)")
         }
+        
+        viewModel.didSelectProduct = { [weak self] product in
+            let detailViewModel = DetailViewModel(productDetail: product)
+            let detailViewController = DetailViewController(viewModel: detailViewModel)
+            self?.navigationController?.pushViewController(detailViewController, animated: true)
+        }
     }
 }
 
