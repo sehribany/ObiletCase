@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - Content Width Calculation
 extension UILabel {
     public func contentWidth() -> CGFloat {
         guard let text = self.text else { return 0 }

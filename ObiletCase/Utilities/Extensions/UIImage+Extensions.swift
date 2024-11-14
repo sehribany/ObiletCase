@@ -8,7 +8,8 @@
 import UIKit
 import Kingfisher
 
-public extension UIImage {
+// MARK: - Resize Image for Content Mode
+extension UIImage {
     func resize(to size: CGSize, for contentMode: UIView.ContentMode? = nil) -> UIImage {
         switch contentMode {
         case .scaleAspectFit:

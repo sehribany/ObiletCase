@@ -64,12 +64,12 @@ class HomeViewController: BaseViewController<HomeViewModel>{
     private func navigateToDetailViewController(with product: Product) {
         let detailViewModel = DetailViewModel(productDetail: product)
         let detailVC = DetailViewController(viewModel: detailViewModel)
-        detailVC.title = product.title // Back butonunda ürün adı gözükecek
+        detailVC.title = product.title
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
-//MARK: - UI Layout
+//MARK: - UILayout
 extension HomeViewController{
     private func addSubViews(){
         view.addSubview(searchBar)
@@ -78,13 +78,11 @@ extension HomeViewController{
     
     private func setUp(){
         addSubViews()
-        
         searchBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(8)
             make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(44)
         }
-        
         productCollectionView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(8)
@@ -92,6 +90,8 @@ extension HomeViewController{
         }
     }
 }
+
+//MARK: - HeaderViewEventSource
 extension HomeViewController: HeaderViewEventSource{
     func didSelectHeaderItem(at index: IndexPath) {
         switch index.item {

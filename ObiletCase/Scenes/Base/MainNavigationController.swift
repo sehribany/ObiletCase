@@ -34,9 +34,9 @@ class MainNavigationController: UINavigationController {
             .foregroundColor: UIColor.appBlack
         ]
         
-        //navigationBar.barTintColor        = UIColor.yellow
-        //navigationBar.shadowImage         = UIImage()
-        //navigationBar.tintColor           = .appBlack
+        navigationBar.barTintColor        = UIColor.yellow
+        navigationBar.shadowImage         = UIImage()
+        navigationBar.tintColor           = .appBlack
         navigationBar.titleTextAttributes = titleTextAttributes
         navigationBar.backIndicatorImage               = backImage
         navigationBar.backIndicatorTransitionMaskImage = backImage

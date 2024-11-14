@@ -8,7 +8,8 @@
 import UIKit
 import Kingfisher
 
-public extension UIImageView {
+// MARK: - Set Image with Placeholder and Resizing
+extension UIImageView {
     static let fadeAnimation = KingfisherOptionsInfoItem.transition(.fade(0.2))
     
     func setImage(_ string: String?, placeholder: UIImage? = nil) {

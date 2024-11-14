@@ -22,6 +22,7 @@ protocol HomeViewProtocol: HomeViewDataSource, HomeViewEventSource {
     func showProductDetailScreen(at indexPath: IndexPath)
 }
 
+//MARK: - HomeViewModel
 final class HomeViewModel: BaseViewModel, HomeViewProtocol{
     var didSelectProduct: ((Product) -> Void)?
     var didSuccessFetchProduct: VoidClosure?
@@ -44,8 +45,10 @@ final class HomeViewModel: BaseViewModel, HomeViewProtocol{
     }
 }
 
+// MARK: - Fetching Products
 extension HomeViewModel{
     
+    //Fetch All Products
     func fetchProduct() {
         productService.fetchProducts { [weak self] result in
             guard let self = self else { return }
@@ -60,6 +63,7 @@ extension HomeViewModel{
         }
     }
     
+    //Fetch Products by Category
     func fetchProductsByCategory(_ category: Category) {
         productService.fetchProductsByCategory(category) { [weak self] result in
             guard let self = self else { return }
