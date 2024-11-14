@@ -10,6 +10,18 @@ import UIKit
 class ProductDetailView: UIView {
     
     //MARK: - Properties
+    
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
+    }()
+    
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        return view
+    }()
+
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -132,8 +144,11 @@ class ProductDetailView: UIView {
 }
 
 //MARK: - UILaayout
+//MARK: - UILayout
 extension ProductDetailView{
     private func addSubViews(){
+        addScrollView()
+        addDetailContentView()
         addImageView()
         addTitleLabel()
         addDescriptionLabel()
@@ -143,8 +158,23 @@ extension ProductDetailView{
         addViewStackView()
     }
     
+    private func addScrollView() {
+        addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+       
+    private func addDetailContentView() {
+        scrollView.addSubview(contentView)
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalToSuperview()
+        }
+    }
+    
     private func addImageView(){
-        addSubview(imageView)
+        contentView.addSubview(imageView)
         imageView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
@@ -153,7 +183,7 @@ extension ProductDetailView{
     }
     
     private func addTitleLabel(){
-        addSubview(titleLabel)
+        contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(15)
             make.leading.trailing.equalToSuperview().inset(20)
@@ -161,7 +191,7 @@ extension ProductDetailView{
     }
     
     private func addDescriptionLabel(){
-        addSubview(descriptionLabel)
+        contentView.addSubview(descriptionLabel)
         descriptionLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(20)
@@ -169,32 +199,32 @@ extension ProductDetailView{
     }
     
     private func addPriceStackView() {
-        addSubview(priceStackView)
+        contentView.addSubview(priceStackView)
         priceStackView.addArrangedSubview(priceImageView)
         priceStackView.addArrangedSubview(priceLabel)
     }
     
     private func addRateStackView() {
-        addSubview(rateStackView)
+        contentView.addSubview(rateStackView)
         rateStackView.addArrangedSubview(rateImageView)
         rateStackView.addArrangedSubview(rateLabel)
     }
     
     private func addPersonStackView() {
-        addSubview(personStackView)
+        contentView.addSubview(personStackView)
         personStackView.addArrangedSubview(personImageView)
         personStackView.addArrangedSubview(personLabel)
     }
     
-    
     private func addViewStackView(){
-        addSubview(viewStackView)
+        contentView.addSubview(viewStackView)
         viewStackView.addArrangedSubview(priceStackView)
         viewStackView.addArrangedSubview(rateStackView)
         viewStackView.addArrangedSubview(personStackView)
         viewStackView.snp.makeConstraints { make in
             make.top.equalTo(descriptionLabel.snp.bottom).offset(25)
             make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview()
         }
     }
 }

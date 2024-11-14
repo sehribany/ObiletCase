@@ -64,7 +64,6 @@ class HomeViewController: BaseViewController<HomeViewModel>{
     private func navigateToDetailViewController(with product: Product) {
         let detailViewModel = DetailViewModel(productDetail: product)
         let detailVC = DetailViewController(viewModel: detailViewModel)
-        detailVC.title = product.title
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }

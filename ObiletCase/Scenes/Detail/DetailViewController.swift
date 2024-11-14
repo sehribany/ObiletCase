@@ -16,7 +16,6 @@ class DetailViewController: BaseViewController<DetailViewModel>{
         super.viewDidLoad()
         addSubViews()
         configure()
-        navigationController?.navigationBar.prefersLargeTitles = false
     }
 }
 
