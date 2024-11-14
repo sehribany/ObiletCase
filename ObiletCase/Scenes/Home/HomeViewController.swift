@@ -28,8 +28,7 @@ class HomeViewController: BaseViewController<HomeViewModel>{
         view.backgroundColor = .appWhite
         navigationConfigure()
         configureContents()
-        viewModel.fetchProductsByCategory(.electronics)
-        //viewModel.fetchProduct()
+        viewModel.fetchProduct()
         bindViewModel()
         setUp()
     }
@@ -46,6 +45,11 @@ class HomeViewController: BaseViewController<HomeViewModel>{
     }
     
     private func bindViewModel() {
+        viewModel.didSelectProduct = { [weak self] product in
+            guard let self = self else { return }
+            self.navigateToDetailViewController(with: product)
+        }
+        
         viewModel.didSuccessFetchProduct = { [weak self] in
             DispatchQueue.main.async {
                 self?.productCollectionView.reloadData()
@@ -55,12 +59,13 @@ class HomeViewController: BaseViewController<HomeViewModel>{
         viewModel.didFailWithError = { error in
             print("Veri çekme hatası: \(error)")
         }
-        
-        viewModel.didSelectProduct = { [weak self] product in
-            let detailViewModel = DetailViewModel(productDetail: product)
-            let detailViewController = DetailViewController(viewModel: detailViewModel)
-            self?.navigationController?.pushViewController(detailViewController, animated: true)
-        }
+    }
+    
+    private func navigateToDetailViewController(with product: Product) {
+        let detailViewModel = DetailViewModel(productDetail: product)
+        let detailVC = DetailViewController(viewModel: detailViewModel)
+        detailVC.title = product.title // Back butonunda ürün adı gözükecek
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 

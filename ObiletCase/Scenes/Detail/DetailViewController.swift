@@ -14,6 +14,8 @@ class DetailViewController: BaseViewController<DetailViewModel>{
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubViews()
+        set()
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
 }
 

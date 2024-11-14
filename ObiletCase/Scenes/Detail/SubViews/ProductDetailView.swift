@@ -58,17 +58,41 @@ class ProductDetailView: UIView {
 extension ProductDetailView{
     private func addSubViews(){
         addImageView()
-        //addTitleLabel()
-        //addPriceLabel()
-        //addDescriptionLabel()
+        addTitleLabel()
+        addPriceLabel()
+        addDescriptionLabel()
     }
     
     private func addImageView(){
         addSubview(imageView)
         imageView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().offset(10)
-            make.centerX.equalToSuperview()
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(10)
+            make.leading.trailing.equalToSuperview().inset(20)
             make.width.height.equalTo(200)
+        }
+    }
+    
+    private func addTitleLabel(){
+        addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(imageView.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(20)
+        }
+    }
+    
+    private func addPriceLabel(){
+        addSubview(priceLabel)
+        priceLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(20)
+        }
+    }
+    
+    private func addDescriptionLabel(){
+        addSubview(descriptionLabel)
+        descriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(priceLabel.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(20)
         }
     }
 }
