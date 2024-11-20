@@ -26,7 +26,4 @@ This project is the project of the Obilet.
 3. Install dependencies:
    ```bash
    pod install
-4.Run the project on the simulator or a real device.
-
-
-  
+4. Run the project on the simulator or a real device.
