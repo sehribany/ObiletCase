@@ -9,6 +9,7 @@ import Foundation
 
 protocol BaseViewDataSource:AnyObject {}
 
+// MARK: - Closures for various view events
 protocol BaseViewEventSource:AnyObject {
     var showActivityIndicatorView: VoidClosure? {get set}
     var hideActivityIndicatorView: VoidClosure? {get set}
@@ -20,7 +21,8 @@ protocol BaseViewEventSource:AnyObject {
 protocol BaseViewProtocol: BaseViewDataSource, BaseViewEventSource {}
 
 class BaseViewModel: BaseViewProtocol  {
-
+    
+    // MARK: - Properties
     var showActivityIndicatorView: VoidClosure?
     var hideActivityIndicatorView: VoidClosure?
     var showLoading              : VoidClosure?

@@ -8,16 +8,18 @@
 import UIKit
 
 class MainNavigationController: UINavigationController {
-    
+    // MARK: - Status Bar Style
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .darkContent
     }
     
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureContents()
     }
     
+    // MARK: - Configuration Methods
     private func configureContents() {
         let backImage = UIImage(named: "icBack")?
             .resize(to: .init(width: 11, height: 18))
@@ -41,6 +43,7 @@ class MainNavigationController: UINavigationController {
         navigationBar.backIndicatorImage               = backImage
         navigationBar.backIndicatorTransitionMaskImage = backImage
         
+        // MARK: - iOS 13+ Appearance Configuration
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()

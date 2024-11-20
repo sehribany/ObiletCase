@@ -144,7 +144,6 @@ class ProductDetailView: UIView {
 }
 
 //MARK: - UILaayout
-//MARK: - UILayout
 extension ProductDetailView{
     private func addSubViews(){
         addScrollView()
