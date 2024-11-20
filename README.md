@@ -13,3 +13,10 @@ This project is the project of the Obilet.
 - KingFisher
 - SnapKit
 - SwiftEntryKit
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/sehribany/ObiletCase.git
+  
