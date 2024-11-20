@@ -42,6 +42,10 @@ class HomeViewController: BaseViewController<HomeViewModel>{
     private func configureContents() {
         productCollectionView.delegate   = self
         productCollectionView.dataSource = self
+        searchBar.onTextChange = { [weak self] text in
+            guard let self = self else { return }
+            self.viewModel.filterProducts(with: text)
+        }
     }
     
     private func bindViewModel() {

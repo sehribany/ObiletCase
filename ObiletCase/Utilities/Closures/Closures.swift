@@ -7,5 +7,5 @@
 
 import Foundation
 
-public typealias VoidClosure    = (() -> Void)
-public typealias StringClosure  = ((String) -> Void)
+typealias VoidClosure    = (() -> Void)
+typealias StringClosure  = ((String) -> Void)

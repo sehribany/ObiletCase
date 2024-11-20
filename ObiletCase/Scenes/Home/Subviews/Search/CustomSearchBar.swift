@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CustomSearchBar: UIView {
+class CustomSearchBar: UIView, UITextFieldDelegate {
     
     //MARK: -Properties
     private let containerView: UIView = {
@@ -33,15 +33,18 @@ class CustomSearchBar: UIView {
         return imageView
     }()
     
-    //MARK: -Initializer
+    var onTextChange: StringClosure?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        textField.delegate = self
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
+        textField.delegate = self
     }
 
     func getSearchText() -> String? {
@@ -50,6 +53,14 @@ class CustomSearchBar: UIView {
     
     func clearSearchText() {
         textField.text = ""
+    }
+    
+    // UITextFieldDelegate Method
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = (textField.text ?? "") as NSString
+        let updatedText = currentText.replacingCharacters(in: range, with: string)
+        onTextChange?(updatedText)
+        return true
     }
 }
 

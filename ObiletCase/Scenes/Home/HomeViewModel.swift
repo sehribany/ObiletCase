@@ -31,6 +31,8 @@ final class HomeViewModel: BaseViewModel, HomeViewProtocol{
     var title                 : String?
     private let productService = ProductService()
     
+    private var allProducts: [Product] = []
+    
     func showProductDetailScreen(at indexPath: IndexPath) {
         let selectedProduct = cellItems[indexPath.row].product
         didSelectProduct?(selectedProduct)
@@ -55,6 +57,7 @@ extension HomeViewModel{
             
             switch result {
             case .success(let products):
+                self.allProducts = products
                 self.cellItems = products.map { ProductCellViewModel(product: $0) }
                 self.didSuccessFetchProduct?()
             case .failure(let error):
@@ -77,5 +80,16 @@ extension HomeViewModel{
                 self.didFailWithError?(error.localizedDescription)
             }
         }
+    }
+    
+    func filterProducts(with searchText: String) {
+        if searchText.isEmpty {
+            cellItems = allProducts.map { ProductCellViewModel(product: $0) }
+        } else {
+            cellItems = allProducts
+                .filter { $0.title.lowercased().contains(searchText.lowercased()) }
+                .map { ProductCellViewModel(product: $0) }
+        }
+        didSuccessFetchProduct?()
     }
 }
